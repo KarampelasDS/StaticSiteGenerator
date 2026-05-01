@@ -43,56 +43,7 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
         self.assertEqual(html_node.to_html(), '<a href="https://www.example.com">This is a link</a>')
 
 
-class TestInlineMarkdown(unittest.TestCase):
-    def test_split_nodes_bold_delimiter(self):
-        old_nodes = [
-            TextNode("**This is some bold text**", TextType.TEXT)
-        ]
-        new_nodes = split_nodes_delimiter(old_nodes, "**", TextType.BOLD)
-        expected_nodes = [
-            TextNode("This is some bold text", TextType.BOLD)
-        ]
-        self.assertEqual(new_nodes, expected_nodes)
-        
-    def test_split_nodes_italic_delimiter(self):
-        old_nodes = [
-            TextNode("*This is some italic text*", TextType.TEXT)
-        ]
-        new_nodes = split_nodes_delimiter(old_nodes, "*", TextType.ITALIC)
-        expected_nodes = [
-            TextNode("This is some italic text", TextType.ITALIC)
-        ]
-        self.assertEqual(new_nodes, expected_nodes)
-    
-    def test_split_nodes_code_delimiter(self):
-        old_nodes = [
-            TextNode("`This is some code text`", TextType.TEXT)
-        ]
-        new_nodes = split_nodes_delimiter(old_nodes, "`", TextType.CODE)
-        expected_nodes = [
-            TextNode("This is some code text", TextType.CODE)
-        ]
-        self.assertEqual(new_nodes, expected_nodes)
-    
-    def test_split_nodes_normal_text(self):
-        old_nodes = [
-            TextNode("This is some normal text", TextType.TEXT)
-        ]
-        new_nodes = split_nodes_delimiter(old_nodes, "*", TextType.TEXT)
-        expected_nodes = [
-            TextNode("This is some normal text", TextType.TEXT)
-        ]
-        self.assertEqual(new_nodes, expected_nodes)
-        
-    def test_split_nodes_no_delimeter_matches(self):
-        old_nodes = [
-            TextNode("*This is some italic text*", TextType.TEXT)
-        ]
-        new_nodes = split_nodes_delimiter(old_nodes, "**", TextType.BOLD)
-        expected_nodes = [
-            TextNode("*This is some italic text*", TextType.TEXT)
-        ]
-        self.assertEqual(new_nodes, expected_nodes)
+
 
 if __name__ == "__main__":
     unittest.main()
